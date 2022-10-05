@@ -22,7 +22,7 @@ const eventsList =[
 ];
 
 function App() {
-    const [formData, setForData] = useState({
+    const [formData, setFormData] = useState({
         payloadUrl: '',
         secret: '',
         eventTypes: [...eventsList],
@@ -63,12 +63,30 @@ function App() {
     const handleEventHappened =(key)=>{
         axios.post('/api/event-emulate',{
             type:key,
-            data: {eventTypes:key, initiator: 'Rakesh K'},
+            data: {eventTypes:key, initiator: 'Sagar M'},
         });
     };
     return (
     <div className="App">
-        <h1 ></h1>
+        <h1 className='text-3xl font-bold text-center py-4'>
+            My Github (My Repo)
+        </h1>
+        <div className="container mx-auto">
+            <h1 className='text-xl'>Register a webhook</h1>
+            <form className='mt-16' onSubmit={handleSubmit}>
+                <div>
+                    <label className='block' htmlFor="payloadURL">Webhook URL</label>
+                    <input 
+                        onChange={handleFormChange} 
+                        type="text" 
+                        value={formData.payloadUrl}
+                        id="payloadUrl"
+                        className='w-full'
+                    />
+                </div>
+                <div className=''></div>
+            </form>
+        </div>
     </div>
   );
 }
