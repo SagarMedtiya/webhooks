@@ -40,15 +40,36 @@ function App() {
         if(e.target.name === 'eventTypes'){
             setFormData((prev)=>{
                 const checkboxes = prev[e.target.name].map((item)=>{
-                    return (
-                        
-                    )
-                })
-            })
+                    return {
+                        ...item,
+                        checked:
+                            item.key === key ? e.target.checked : item.checked,
+                    };
+                });
+                return{
+                    ...prev,
+                    [e.target.name]: checkboxes,
+                };
+            });
+            return;
         }
-    }
+        setFormData((prev)=>{
+            return {
+                ...prev,
+                [e.target.name]: e.target.value,
+            };
+        });
+    };
+    const handleEventHappened =(key)=>{
+        axios.post('/api/event-emulate',{
+            type:key,
+            data: {eventTypes:key, initiator: 'Rakesh K'},
+        });
+    };
     return (
-    <div></div>
+    <div className="App">
+        <h1 ></h1>
+    </div>
   );
 }
 
