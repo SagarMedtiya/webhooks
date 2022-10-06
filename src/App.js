@@ -84,7 +84,25 @@ function App() {
                         className='w-full'
                     />
                 </div>
-                <div className=''></div>
+                <div className='mt-4'>
+                    <label className='secret' htmlFor="url">
+                        secret
+                    </label>
+                    <input 
+                        type="text"
+                        onChange={handleFormChange}
+                        value={formData.secret}
+                        name="secret"
+                        id="secret"
+                        className='w-full'
+                    />
+                </div>
+                <div className='mt-4'>
+                    <h3 className='font-bold mb-2'>Trigger Webhooks on events</h3>
+                    {
+                        
+                    }
+                </div>
             </form>
         </div>
     </div>
