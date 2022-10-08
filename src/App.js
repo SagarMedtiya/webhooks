@@ -100,9 +100,32 @@ function App() {
                 <div className='mt-4'>
                     <h3 className='font-bold mb-2'>Trigger Webhooks on events</h3>
                     {
-                        
+                        eventsList.map((item, ind)=>{
+                            return(
+                                <div key={item.key}>
+                                    <input
+                                        onChange={e=>{
+                                            handleFormChange(e,item.key)
+                                        }} 
+                                        defaultChecked={item.checked}
+                                        value={item.checked}
+                                        name="eventTypes"
+                                        id={item.key}
+                                        type="checkbox" />
+                                    <label 
+                                        className='ml-2'
+                                        htmlFor={item.key}>
+                                            {item.title}
+                                    </label>    
+
+                                </div>
+                            );
+                        })
                     }
                 </div>
+                <button
+                    className='mt-4 bg-purple-500 text-white px-4 py-2 rounded-xl' type="submit" 
+                    >Register Hook</button>
             </form>
         </div>
     </div>
