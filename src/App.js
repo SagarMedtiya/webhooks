@@ -127,6 +127,20 @@ function App() {
                     className='mt-4 bg-purple-500 text-white px-4 py-2 rounded-xl' type="submit" 
                     >Register Hook</button>
             </form>
+            <div className="mt-12">
+                <h1>Emulate events</h1>
+                <div className='flex items-center gap-4'>
+                    {eventsList.map((eventType)=>{
+                        <button
+                            key={eventType.key}
+                            className="mt-4 bg-green-500 text-white px-4 py-2 rounded-xl"
+                            onClick={()=>{
+                                handleEventHappened(eventType.key)
+                            }}
+                        >{eventType.title}</button>
+                    })}
+                </div>
+            </div>
         </div>
     </div>
   );
