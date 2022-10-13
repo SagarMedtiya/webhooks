@@ -86,7 +86,7 @@ function App() {
                 </div>
                 <div className='mt-4'>
                     <label className='secret' htmlFor="url">
-                        secret
+                        Secret
                     </label>
                     <input 
                         type="text"
