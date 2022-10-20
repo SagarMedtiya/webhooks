@@ -20,7 +20,8 @@ class controller{
         
         //event trigger 
         setTimeout(()=>{
-
+            //Async 
+            
         },1000)
 
         res.sendStatus(200);
