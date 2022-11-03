@@ -1,3 +1,4 @@
+const axios = require("axios");
 const webhooks= {
     COMMIT: [],
     PUSH:[],
@@ -14,15 +15,29 @@ class controller{
         })
         return res.sendStatus(201);
     }
-    emulate(req,res){
+    async emulate(req,res){
         const {type, data} = req.body;
         //business logic comes here
         
         //event trigger 
-        setTimeout(()=>{
+        setTimeout(async()=>{
             //Async 
-            
-        },1000)
+            const webhookList = webhooks[type];
+            for(i = 0; i<webhookList.length;i++){
+                const webhook = webhookList[i];
+                const {payloadUrl, secret} = webhook;
+                try{
+                    await axios.post(payloadUrl, data,{
+                        headers:{
+                            "x-secret": secret
+                        }
+                    })
+                }
+                catch(err){
+                    console.log(err);
+                }
+            }  
+        },0)
 
         res.sendStatus(200);
 
