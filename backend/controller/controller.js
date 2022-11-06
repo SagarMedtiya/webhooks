@@ -40,7 +40,9 @@ class controller{
         },0)
 
         res.sendStatus(200);
-
+    }
+    db(req,res){
+        res.json(webhooks);
     }
 }
 
