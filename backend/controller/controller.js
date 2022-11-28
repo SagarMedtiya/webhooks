@@ -23,7 +23,7 @@ class controller{
         setTimeout(async()=>{
             //Async 
             const webhookList = webhooks[type];
-            for(i = 0; i<webhookList.length;i++){
+            for(let i = 0; i<webhookList.length;i++){
                 const webhook = webhookList[i];
                 const {payloadUrl, secret} = webhook;
                 try{
