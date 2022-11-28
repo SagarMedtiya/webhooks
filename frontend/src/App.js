@@ -29,7 +29,7 @@ function App() {
     });
     const handleSubmit = (e) =>{
         e.preventDefault();
-        axios.post('/api/webhooks',{
+        axios.post('http://localhost:5600/api/webhooks',{
             ...formData,
             eventTypes: formData.eventTypes
                 .filter((item)=> !!item.checked)
@@ -127,7 +127,7 @@ function App() {
                 </div>
                 <button
                     className='mt-4 bg-purple-500 text-white px-4 py-2 rounded-xl' type="submit" 
-                    >Register Hook</button>
+                    >Register webHook</button>
             </form>
             <div className="mt-12">
                 <h1>Emulate events</h1>
