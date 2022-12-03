@@ -1,5 +1,5 @@
 const axios = require("axios");
-const webhooks= {
+var webhooks= {
     COMMIT: [],
     PUSH:[],
     MERGE:[]
@@ -7,15 +7,15 @@ const webhooks= {
 
 class controller{
 
-    async webhooks(req,res){
-        
+    async webhookss(req,res){
         const {payloadUrl, secret, eventTypes} = req.body;
         eventTypes.forEach(eventType=>{
             webhooks[eventType].push({payloadUrl: payloadUrl, secret: secret})
         })
+        console.log(webhooks);
         return res.sendStatus(201);
     }
-    async emulate(req,res){
+    async emulate(req,res){    
         const {type, data} = req.body;
         //business logic comes here
         
@@ -23,13 +23,15 @@ class controller{
         setTimeout(async()=>{
             //Async 
             const webhookList = webhooks[type];
+            console.log(webhookList);
             for(let i = 0; i<webhookList.length;i++){
                 const webhook = webhookList[i];
                 const {payloadUrl, secret} = webhook;
+                console.log(payloadUrl);
                 try{
                     await axios.post(payloadUrl, data,{
                         headers:{
-                            "x-secret": secret
+                            'x-secret': secret
                         }
                     })
                 }
