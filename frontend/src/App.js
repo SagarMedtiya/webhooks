@@ -29,7 +29,7 @@ function App() {
     });
     const handleSubmit = (e) =>{
         e.preventDefault();
-        axios.post('http://localhost:5600/api/webhooks',{
+        axios.post('/api/webhooks',{
             ...formData ,
             eventTypes: formData.eventTypes
                 .filter((item)=> !!item.checked)
