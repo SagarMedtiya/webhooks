@@ -12,34 +12,32 @@ class controller{
         eventTypes.forEach(eventType=>{
             webhooks[eventType].push({payloadUrl: payloadUrl, secret: secret})
         })
-        console.log(webhooks);
         return res.sendStatus(201);
     }
     async emulate(req,res){    
-        const {type, data} = req.body;
-        //business logic comes here
-        
-        //event trigger 
-        setTimeout(async()=>{
-            //Async 
+        const { type, data } = req.body;
+        // Business logic goes here...
+        console.log(req.body);
+        // Event trigger (Call Webhook)
+        setTimeout(async () => {
             const webhookList = webhooks[type];
-            console.log(webhookList);
-            for(let i = 0; i<webhookList.length;i++){
+
+            console.log(webhookList)
+            for (let i = 0; i < webhookList.length; i++) {
                 const webhook = webhookList[i];
-                const {payloadUrl, secret} = webhook;
-                console.log(payloadUrl);
-                try{
-                    await axios.post(payloadUrl, data,{
-                        headers:{
-                            'x-secret': secret
-                        }
-                    })
-                }
-                catch(err){
+                const { payloadUrl, secret } = webhook;
+
+                try {
+                    await axios.post(payloadUrl, data, {
+                        headers: {
+                            'x-secret': secret,
+                        },
+                    });
+                } catch (err) {
                     console.log(err);
                 }
-            }  
-        },0)
+            }
+        }, 0);
 
         res.sendStatus(200);
     }
@@ -49,4 +47,4 @@ class controller{
 }
 
 
-module.exports = new controller();
+module.exports = new  controller();
