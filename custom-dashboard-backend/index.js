@@ -8,7 +8,14 @@ app.use(express.json());
 const messages = [];
 
 const authMiddleware= (req,res,next)=>{
-    
+    const headers = req.headers;
+    const secretHeader = headers['x-secret'];
+    if(secretHeader !== process.env.WEBHOOK_SECRET){
+
+    }
+
+    next();
+
 }
 app.post('/git-info',(req,res)=>{
     
