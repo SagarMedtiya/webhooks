@@ -11,13 +11,13 @@ const authMiddleware= (req,res,next)=>{
     const headers = req.headers;
     const secretHeader = headers['x-secret'];
     if(secretHeader !== process.env.WEBHOOK_SECRET){
-
+        return res.sendStatus(401)
     }
 
     next();
 
 }
-app.post('/git-info',(req,res)=>{
+app.post('/git-info',authMiddleware,(req,res)=>{
     
     const data = req.body;
 
